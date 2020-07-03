@@ -1,0 +1,1 @@
+../component/helloworld.cmd
