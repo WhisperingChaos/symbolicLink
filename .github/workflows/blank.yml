@@ -15,12 +15,16 @@ jobs:
     - name: Run after checkout before patching
       working-directory: .\test
       run: |
+        dir
+        echo limit to only symbolic links - link missing.
         dir /al
         helloWorld.cmd Arg1-1 Arg1-2
+        echo notice arguments where not forwarded to actual command.
     - name: Run after patching symlink
       working-directory: .\test
       run: |
         del helloWorld.cmd
         mklink  helloWorld.cmd ..\component\helloWorld.cmd
         dir /al
+        echo symlink recreated and now arguments are forwarded to actual command.
         helloWorld.cmd Arg2-1 Arg2-2
