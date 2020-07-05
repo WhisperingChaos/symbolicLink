@@ -15,6 +15,7 @@ jobs:
     - name: Run after checkout before patching
       working-directory: .\test
       run: |
+        @echo on
         dir
         echo limit to only symbolic links - link missing.
         dir /al
@@ -23,6 +24,7 @@ jobs:
     - name: Run after patching symlink
       working-directory: .\test
       run: |
+        @echo on
         del helloWorld.cmd
         mklink  helloWorld.cmd ..\component\helloWorld.cmd
         dir /al
