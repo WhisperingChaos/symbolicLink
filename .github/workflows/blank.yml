@@ -18,8 +18,8 @@ jobs:
         dir
         echo limit to only symbolic links - link missing.
         dir /al
-        helloWorld.cmd Arg1-1 Arg1-2
         echo notice arguments where not forwarded to actual command.
+        helloWorld.cmd Arg1-1 Arg1-2
     - name: Run after patching symlink
       working-directory: .\test
       run: |
