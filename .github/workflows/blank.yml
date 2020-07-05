@@ -12,21 +12,9 @@ jobs:
         shell: cmd
     steps:
     - uses: actions/checkout@v2
-    - name: Run after checkout before patching
+    - name: Before symlink patch
       working-directory: .\test
-      run: |
-        @echo on
-        dir
-        echo limit to only symbolic links - link missing.
-        dir /al
-        echo notice arguments where not forwarded to actual command.
-        helloWorld.cmd Arg1-1 Arg1-2
-    - name: Run after patching symlink
+      run: actualBehavior.cmd
+    - name: After symlink patch
       working-directory: .\test
-      run: |
-        @echo on
-        del helloWorld.cmd
-        mklink  helloWorld.cmd ..\component\helloWorld.cmd
-        dir /al
-        echo symlink recreated and now arguments are forwarded to actual command.
-        helloWorld.cmd Arg2-1 Arg2-2
+      run: expectedBehavior.cmd
