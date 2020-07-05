@@ -1,0 +1,26 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+on:
+  push:
+    branches: [ master ]
+jobs:
+  Test:
+    runs-on: Windows-latest
+    defaults:
+      run:
+        shell: cmd
+    steps:
+    - uses: actions/checkout@v2
+    - name: Run after checkout before patching
+      working-directory: .\test
+      run: |
+        dir /al
+        helloWorld.cmd Arg1-1 Arg1-2
+    - name: Run after patching symlink
+      working-directory: .\test
+      run: |
+        del helloWorld.cmd
+        mklink  helloWorld.cmd ..\component\helloWorld.cmd
+        dir /al
+        helloWorld.cmd Arg2-1 Arg2-2
